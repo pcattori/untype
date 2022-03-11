@@ -6,11 +6,11 @@ const path = require('path')
 const { untype } = require('./untype')
 
 const [,,...args] = process.argv
-const file = path.resolve(args[0])
+const filepath = path.resolve(args[0])
+const filename = path.basename(filepath)
 
-
-const ts = fs.readFileSync(file).toString()
-const js = untype(ts)
+const ts = fs.readFileSync(filepath).toString()
+const js = untype(filename, ts)
 console.log(js)
 
 

@@ -1,13 +1,13 @@
 const babel = require("@babel/core")
 
-function untype(ts) {
+function untype(filename, ts) {
   const { code: js } = babel.transformSync(ts, {
+    filename,
+    presets: [
+      ["@babel/preset-typescript", { jsx: "preserve"}]
+    ],
     plugins: [
-      "@babel/plugin-syntax-jsx",
-      ["@babel/plugin-transform-typescript", {
-        jsx: "preserve",
-        "onlyRemoveTypeImports": true,
-      }],
+      "@babel/plugin-syntax-jsx"
     ],
     compact: false,
     retainLines: true,
@@ -24,7 +24,8 @@ function untype(ts) {
    Though might be nice to provide an output that at least _we_ think looks good...
    */
 
-  return js
+  // For now, just replace multiple blank lines with a single one
+  return js.replace(/\n\s*\n\s*\n/g, '\n\n')
 }
 
 module.exports = {
