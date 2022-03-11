@@ -1,5 +1,5 @@
 const babel = require("@babel/core")
-const prettier = require('prettier')
+const prettier = require("prettier")
 
 function untype(filename, ts) {
   const { code: js } = babel.transformSync(ts, {
