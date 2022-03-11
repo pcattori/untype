@@ -5,7 +5,7 @@ function untype(filename, ts) {
   const { code: js } = babel.transformSync(ts, {
     filename,
     presets: [
-      ["@babel/preset-typescript", { jsx: "preserve"}]
+      ["@babel/preset-typescript", { jsx: "preserve" }]
     ],
     plugins: [
       "@babel/plugin-syntax-jsx"
